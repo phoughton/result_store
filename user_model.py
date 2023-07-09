@@ -1,12 +1,36 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean, TIMESTAMP
 from sqlalchemy.ext.declarative import declarative_base
+
 
 Base = declarative_base()
 
 
-class User(Base):
-    __tablename__ = 'users'
+class Hand(Base):
+    __tablename__ = 'hands'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    email = Column(String)
+    starter = Column(String)
+    card1 = Column(String)
+    card2 = Column(String)
+    card3 = Column(String)
+    card4 = Column(String)
+    is_crib = Column(Boolean)
+    timestamp = Column(TIMESTAMP)
+
+    def __repr__(self):
+        return "<Hand(starter='%s', card1='%s', card2='%s', card3='%s', card4='%s', is_crib='%s')>" % (
+            self.starter, self.card1, self.card2,
+            self.card3, self.card4, self.is_crib)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'starter': self.starter,
+            'hand': [
+                self.card1,
+                self.card2,
+                self.card3,
+                self.card4
+            ],
+            'is_crib': self.is_crib
+        }

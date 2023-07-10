@@ -15,6 +15,7 @@ class Hand(Base):
     card4 = Column(String)
     is_crib = Column(Boolean)
     timestamp = Column(DateTime, server_default=func.now())
+    score = Column(Integer)
 
     def to_dict(self):
         return {
@@ -27,5 +28,6 @@ class Hand(Base):
                 self.card4
             ],
             'is_crib': self.is_crib,
-            'timestamp': self.timestamp.isoformat()
+            'timestamp': self.timestamp.isoformat(),
+            "score": self.score
         }

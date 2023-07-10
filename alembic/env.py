@@ -4,6 +4,9 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+import user_model
+
+
 from decouple import config as env_config
 
 # this is the Alembic Config object, which provides
@@ -17,8 +20,8 @@ db_ip = env_config('DATABASE_IP')
 db_name = env_config('DATABASE_NAME')
 db_user = env_config('DATABASE_USER')
 db_port = env_config('DATABASE_PORT')
-DATABASE_URL = f"""postgresql://{db_user}:{password}@" + \
-    f""{db_ip}:{db_port}/{db_name}"""
+DATABASE_URL = f"""postgresql://{db_user}:{password}@""" + \
+    f"""{db_ip}:{db_port}/{db_name}"""
 
 config.set_main_option('sqlalchemy.url', DATABASE_URL)
 
@@ -31,7 +34,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = None
+target_metadata = user_model.Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:

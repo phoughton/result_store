@@ -2,8 +2,15 @@ from sqlalchemy import create_engine
 from user_model import Base, Hand
 from sqlalchemy.orm import sessionmaker
 import json
+from decouple import config
 
-engine = create_engine('postgresql://postgres:postgresql1215@172.17.0.4:5432/mydatabase')
+
+password = config('DATABASE_PASSWORD')
+ip = config('DATABASE_IP')
+print(f'password: {password}')
+print(f'ip: {ip}')
+
+engine = create_engine(f"""postgresql://postgres:{password}@{ip}:5432/mydatabase""")
 
 Base.metadata.create_all(engine)
 

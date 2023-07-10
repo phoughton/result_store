@@ -1,6 +1,5 @@
-from sqlalchemy import Column, Integer, String, Boolean, TIMESTAMP
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, func
 from sqlalchemy.ext.declarative import declarative_base
-
 
 Base = declarative_base()
 
@@ -15,12 +14,7 @@ class Hand(Base):
     card3 = Column(String)
     card4 = Column(String)
     is_crib = Column(Boolean)
-    timestamp = Column(TIMESTAMP)
-
-    def __repr__(self):
-        return "<Hand(starter='%s', card1='%s', card2='%s', card3='%s', card4='%s', is_crib='%s')>" % (
-            self.starter, self.card1, self.card2,
-            self.card3, self.card4, self.is_crib)
+    timestamp = Column(DateTime, server_default=func.now())
 
     def to_dict(self):
         return {
@@ -32,5 +26,6 @@ class Hand(Base):
                 self.card3,
                 self.card4
             ],
-            'is_crib': self.is_crib
+            'is_crib': self.is_crib,
+            'timestamp': self.timestamp.isoformat()
         }

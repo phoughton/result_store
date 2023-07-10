@@ -6,14 +6,13 @@ from decouple import config
 
 
 password = config('DATABASE_PASSWORD')
-ip = config('DATABASE_IP')
+db_ip = config('DATABASE_IP')
 db_name = config('DATABASE_NAME')
-
-print(f'password: {password}')
-print(f'ip: {ip}')
+db_user = config('DATABASE_USER')
+db_port = config('DATABASE_PORT')
 
 engine = create_engine(
-    f"""postgresql://postgres:{password}@{ip}:5432/{db_name}""")
+    f"""postgresql://{db_user}:{password}@{db_ip}:{db_port}/{db_name}""")
 
 Base.metadata.create_all(engine)
 

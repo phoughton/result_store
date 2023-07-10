@@ -17,7 +17,8 @@ db_ip = env_config('DATABASE_IP')
 db_name = env_config('DATABASE_NAME')
 db_user = env_config('DATABASE_USER')
 db_port = env_config('DATABASE_PORT')
-DATABASE_URL = f"""postgresql://{db_user}:{password}@{db_ip}:{db_port}/{db_name}"""
+DATABASE_URL = f"""postgresql://{db_user}:{password}@" + \
+    f""{db_ip}:{db_port}/{db_name}"""
 
 config.set_main_option('sqlalchemy.url', DATABASE_URL)
 

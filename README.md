@@ -7,6 +7,8 @@ I use my Cribbage example for the table/columns and also use Alembic for version
 
 ## Run code
 ```bash
+python -m pip install -r requirements.txt
+
 python pconnect.py
 ```
 

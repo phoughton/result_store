@@ -1,28 +1,12 @@
-# Python Template
-Use as a template for python repos.
+# Python ORM example
+
+This is an example of an Object Relational Mapper for python.
+
+I use my Cribbage example for the table/columns and also use Alembic for versioning the schema.
 
 
-## Run the tests
+## Run code
 ```bash
-python -m pytest
+python pconnect.py
 ```
 
-
-
-## Using the Dockerfile to create an image
-
-Follwo these steps:
-
-```
-# Find the docker file
-cd /.devcontainer
-
-# To build the image
-docker build -t phoughton/python-dev-main
-
-# Login to existing account
-docker login
-
-# Upload
-docker push phoughton/python-dev-main
-```
